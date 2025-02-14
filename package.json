@@ -1,0 +1,30 @@
+{
+  "name": "react-namaste-course",
+  "version": "1.0.0",
+  "description": "This is a course on namaste react",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niketanmoon/react-namaste-course.git"
+  },
+  "author": "Niketan Moon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/niketanmoon/react-namaste-course/issues"
+  },
+  "homepage": "https://github.com/niketanmoon/react-namaste-course#readme",
+  "devDependencies": {
+    "parcel": "^2.13.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "browserslist": [
+    "cover 99.5%"
+  ]
+}
