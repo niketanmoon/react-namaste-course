@@ -1,39 +1,7 @@
-/**
- * Header
- * - Logo
- * - Nav items
- * - Cart
- * Body
- *   - Search bar
- *   - Restaurants List
- * Footer
- *  - Links
- *  - Copyright
- */
+export const IMG_CDN_URL =
+  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660";
 
-import React from "react";
-import ReactDOM from "react-dom/client";
-import Logo from "./platterrushlogo.png";
-const Title = () => {
-  return <img src={Logo} alt="logo" className="logo" />;
-};
-const Header = () => {
-  return (
-    <div className="header">
-      <Title />
-      <div className="nav-items">
-        <ul>
-          <li key="home">Home</li>
-          <li key="about">About</li>
-          <li key="contact">Contact</li>
-          <li key="cart">Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-const restaurantList = [
+export const restaurantList = [
   {
     info: {
       id: "588704",
@@ -685,48 +653,3 @@ const restaurantList = [
     widgetId: "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo",
   },
 ];
-
-const RestaurantCard = ({
-  name,
-  cuisines,
-  avgRatingString,
-  cloudinaryImageId,
-}) => {
-  return (
-    <div className="card">
-      <img
-        src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
-        alt="logo"
-      />
-      <h2>{name}</h2>
-      <h3>{cuisines.join(", ")}</h3>
-      <h4>{avgRatingString} stars </h4>
-    </div>
-  );
-};
-
-const Body = () => {
-  return (
-    <div className="restaurant-list">
-      {restaurantList.map((restaurant) => {
-        return <RestaurantCard key={restaurant.info.id} {...restaurant.info} />;
-      })}
-    </div>
-  );
-};
-
-const Fotoer = () => {
-  return <h1>Footer</h1>;
-};
-
-const AppLayout = () => {
-  return (
-    <>
-      <Header />
-      <Body />
-      <Fotoer />
-    </>
-  );
-};
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
