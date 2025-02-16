@@ -1,13 +1,16 @@
 import Logo from "../../platterrushlogo.png";
+import { useState } from "react";
+
 const Title = () => {
   return (
     <a>
-      <img src={Logo} alt="logo" className="logo" />;
+      <img src={Logo} alt="logo" className="logo" />
     </a>
   );
 };
 
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="header">
       <Title />
@@ -19,6 +22,11 @@ const Header = () => {
           <li key="cart">Cart</li>
         </ul>
       </div>
+      {isLoggedIn ? (
+        <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+      ) : (
+        <button onClick={() => setIsLoggedIn(true)}>Login</button>
+      )}
     </div>
   );
 };
