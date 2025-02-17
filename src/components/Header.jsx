@@ -1,4 +1,5 @@
-import Logo from "../../platterrushlogo.png";
+import { Link } from "react-router";
+import Logo from "../assets/img/platterrushlogo.png";
 import { useState } from "react";
 
 const Title = () => {
@@ -16,9 +17,16 @@ const Header = () => {
       <Title />
       <div className="nav-items">
         <ul>
-          <li key="home">Home</li>
-          <li key="about">About</li>
-          <li key="contact">Contact</li>
+          <Link to="/">
+            <li key="home">Home</li>
+          </Link>
+          <Link to="/about">
+            <li key="about">About</li>
+          </Link>
+          <Link to="/contact">
+            <li key="contact">Contact</li>
+          </Link>
+
           <li key="cart">Cart</li>
         </ul>
       </div>

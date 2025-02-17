@@ -2,6 +2,7 @@ import { RESTAURANT_API_URL, restaurantList } from "../constants";
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router";
 
 const filterData = (searchText, allRestaurants) => {
   const filteredData = allRestaurants.filter((restaurant) => {
@@ -31,7 +32,7 @@ const Body = () => {
     setFilteredRestaurants(totalRestaurants);
   }
   //   if (!allRestaurants.length) return null;
-  return allRestaurants.length !== 0 ? (
+  return allRestaurants?.length !== 0 ? (
     <>
       <div className="search-container">
         <input
@@ -54,7 +55,12 @@ const Body = () => {
       <div className="restaurant-list">
         {filteredRestaurants?.map((restaurant) => {
           return (
-            <RestaurantCard key={restaurant.info.id} {...restaurant.info} />
+            <Link
+              to={`/restaurant/${restaurant.info.id}`}
+              key={restaurant.info.id}
+            >
+              <RestaurantCard key={restaurant.info.id} {...restaurant.info} />{" "}
+            </Link>
           );
         })}
       </div>
