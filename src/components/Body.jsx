@@ -59,7 +59,7 @@ const Body = () => {
               to={`/restaurant/${restaurant.info.id}`}
               key={restaurant.info.id}
             >
-              <RestaurantCard key={restaurant.info.id} {...restaurant.info} />{" "}
+              <RestaurantCard {...restaurant.info} />
             </Link>
           );
         })}

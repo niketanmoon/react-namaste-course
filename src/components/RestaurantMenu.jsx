@@ -1,19 +1,35 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { IMG_CDN_URL } from "../constants";
+import { IMG_CDN_URL, MENU_API_URL } from "../constants";
 import Shimmer from "./Shimmer";
 
 const RestaurantMenu = () => {
+  //   const [resInfo, setResInfo] = useState(null);
   const { id } = useParams();
+
   const [restaurant, setRestaurant] = useState(null);
   const [menu, setMenu] = useState(null);
   useEffect(() => {
     getRestaurantInfo();
   }, []);
+
+  //   const fetchMenu = async () => {
+  //     const data = await fetch(
+  //       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5869809&lng=73.7591762&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
+  //     );
+  //     const json = await data.json();
+  //     setResInfo(json.data);
+  //   };
+
+  //   if (resInfo === null) return <Shimmer />;
+
+  //   const { name, cuisines, costForTwoMessage } =
+  //     resInfo?.cards[0]?.card?.card?.info;
+  //   const { itemCards } =
+  //     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+
   async function getRestaurantInfo() {
-    const data = await fetch(
-      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5869809&lng=73.7591762&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
-    );
+    const data = await fetch(MENU_API_URL + id);
     const json = await data.json();
     const recommendedMenu =
       await json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.find(
