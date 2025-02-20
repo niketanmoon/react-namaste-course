@@ -11,24 +11,24 @@
  *  - Copyright
  */
 
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 
 import Header from "./components/Header";
 import Body from "./components/Body";
-import Footer from "./components/Footer";
+
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
 import About from "./components/About";
 import ErrorPage from "./components/ErrorPage";
 import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaurantMenu";
 
+const Grocery = lazy(() => import("./components/Grocery"));
 const AppLayout = () => {
   return (
     <>
       <Header />
       <Outlet />
-      <Footer />
     </>
   );
 };
@@ -42,6 +42,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <Body />,
+      },
+      {
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<h1>Loading.....</h1>}>
+            <Grocery />
+          </Suspense>
+        ),
       },
       {
         path: "/about",

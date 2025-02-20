@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import Logo from "../assets/img/platterrushlogo.png";
 import { useState } from "react";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Title = () => {
   return (
@@ -12,22 +13,29 @@ const Title = () => {
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const onlineStatus = useOnlineStatus();
   return (
     <div className="header">
       <Title />
       <div className="nav-items">
         <ul>
-          <Link to="/">
-            <li key="home">Home</li>
-          </Link>
-          <Link to="/about">
-            <li key="about">About</li>
-          </Link>
-          <Link to="/contact">
-            <li key="contact">Contact</li>
-          </Link>
+          <li>Online Status: {onlineStatus ? "✅" : "🔴"}</li>
+          <li key="home">
+            <Link to="/">Home</Link>
+          </li>
+
+          <li key="about">
+            <Link to="/about">About</Link>
+          </li>
+
+          <li key="contact">
+            <Link to="/contact">Contact</Link>
+          </li>
 
           <li key="cart">Cart</li>
+          <li key="grocery">
+            <Link to="/grocery">Grocery</Link>
+          </li>
         </ul>
       </div>
       {isLoggedIn ? (
