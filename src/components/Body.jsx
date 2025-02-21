@@ -43,38 +43,40 @@ const Body = () => {
   }
   //   if (!allRestaurants.length) return null;
   return allRestaurants?.length !== 0 ? (
-    <>
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search for restaurants"
-          className="search-input"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-        <button
-          className="search-btn"
-          onClick={() => {
-            const data = filterData(searchText, allRestaurants);
-            setFilteredRestaurants(data);
-          }}
-        >
-          Search
-        </button>
+    <div className="body px-16">
+      <div className="">
+        <div className="search-container m-4 p-4">
+          <input
+            type="text"
+            placeholder="Search for restaurants"
+            className="px-2 py-2 border border-solid border-black rounded-lg"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <button
+            className="px-4 py-2 bg-green-200 m-4 rounded-lg"
+            onClick={() => {
+              const data = filterData(searchText, allRestaurants);
+              setFilteredRestaurants(data);
+            }}
+          >
+            Search
+          </button>
+        </div>
+        <div className="restaurant-list flex flex-wrap">
+          {filteredRestaurants?.map((restaurant) => {
+            return (
+              <Link
+                to={`/restaurant/${restaurant.info.id}`}
+                key={restaurant.info.id}
+              >
+                <RestaurantCard {...restaurant.info} />
+              </Link>
+            );
+          })}
+        </div>
       </div>
-      <div className="restaurant-list">
-        {filteredRestaurants?.map((restaurant) => {
-          return (
-            <Link
-              to={`/restaurant/${restaurant.info.id}`}
-              key={restaurant.info.id}
-            >
-              <RestaurantCard {...restaurant.info} />
-            </Link>
-          );
-        })}
-      </div>
-    </>
+    </div>
   ) : (
     <Shimmer />
   );

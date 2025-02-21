@@ -1,4 +1,5 @@
-.header {
+@import "tailwindcss";
+/* .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -49,4 +50,4 @@
 .user-card {
   padding: 10px;
   border: 1px solid black;
-}
+} */
