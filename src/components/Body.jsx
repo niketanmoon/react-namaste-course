@@ -1,5 +1,5 @@
 import { RESTAURANT_API_URL, restaurantList } from "../utils/constants";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withOpenLabel } from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
@@ -18,6 +18,8 @@ const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  const RestaurantCardOpen = withOpenLabel(RestaurantCard);
 
   useEffect(() => {
     getRestaurants();
@@ -70,7 +72,11 @@ const Body = () => {
                 to={`/restaurant/${restaurant.info.id}`}
                 key={restaurant.info.id}
               >
-                <RestaurantCard {...restaurant.info} />
+                {restaurant.info?.isOpen ? (
+                  <RestaurantCardOpen {...restaurant.info} />
+                ) : (
+                  <RestaurantCard {...restaurant.info} />
+                )}
               </Link>
             );
           })}

@@ -1,27 +1,20 @@
 import { useEffect, useState } from "react";
-import { MENU_API_URL } from "./constants";
+import { MENU_API_URL } from "../utils/constants";
 
-const useRestaurantMenu = (id) => {
-  const [restaurant, setRestaurant] = useState(null);
-  const [menu, setMenu] = useState(null);
+const useRestaurantMenu = (resId) => {
+  const [resInfo, setResInfo] = useState(null);
 
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(MENU_API_URL + id);
+    const data = await fetch(MENU_API_URL + resId);
     const json = await data.json();
-    const recommendedMenu =
-      await json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.find(
-        (item) => item?.card?.card?.title === "Recommended"
-      )?.card?.card?.itemCards;
-    setRestaurant(json.data?.cards[2]?.card?.card?.info);
-
-    recommendedMenu ? setMenu(recommendedMenu) : setMenu([]);
+    setResInfo(json.data);
   };
 
-  return [restaurant, menu];
+  return resInfo;
 };
 
 export default useRestaurantMenu;
